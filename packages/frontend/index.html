@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Election Navigation Assistant</title>
+    <!-- Modern font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Left Panel: Chat & Interaction -->
+        <main class="chat-panel">
+            <header class="chat-header">
+                <div class="header-info">
+                    <h1>Election Assistant</h1>
+                    <p>Guiding you through your democratic rights.</p>
+                </div>
+            </header>
+
+            <div class="chat-history" id="chat-history">
+                <!-- Welcome block -->
+                <div class="chat-message assistant">
+                    Welcome to the Interactive Election Assistant. Click "Start Guide" to begin verifying your eligibility, or ask me a generic question about the election process.
+                </div>
+            </div>
+
+            <!-- Dynamic Decision Buttons container -->
+            <div class="chat-options-container" id="chat-options-container">
+                <button class="chat-option-btn primary-pulse" onclick="sendOption('start')">Start Guide</button>
+            </div>
+
+            <!-- FAQ Input Area -->
+            <div class="chat-input-area">
+                <input type="text" id="faq-input" placeholder="Ask a question (e.g. What is an EVM?)" autocomplete="off">
+                <button id="send-btn" onclick="sendText()">Send</button>
+            </div>
+        </main>
+
+        <!-- Right Panel: Visual Timeline / Progress -->
+        <aside class="timeline-panel">
+            <h2>Current Election Phase</h2>
+            <div class="timeline" id="timeline-container">
+                <!-- Phases injected by JS here -->
+            </div>
+
+            <div class="progress-section">
+                <h2>Your Progress Status</h2>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span id="current-state-text" class="status-text">Not Started</span>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
