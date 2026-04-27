@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Election Navigation Assistant — a guided, step-by-step tool to help you understand the election process, check eligibility, register to vote, and learn about voting day.">
     <title>Interactive Election Navigation Assistant</title>
     <!-- Modern font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,41 +16,76 @@
         <main class="chat-panel">
             <header class="chat-header">
                 <div class="header-info">
-                    <h1>Election Assistant</h1>
+                    <h1>🗳️ Election Assistant</h1>
                     <p>Guiding you through your democratic rights.</p>
                 </div>
             </header>
 
-            <div class="chat-history" id="chat-history">
+            <!-- Step Progress Bar -->
+            <div class="progress-bar-container" role="progressbar" aria-label="Guided flow progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="4">
+                <div class="progress-step completed" data-step="start" id="step-start">
+                    <div class="step-dot">1</div>
+                    <span class="step-label">Start</span>
+                </div>
+                <div class="progress-connector"></div>
+                <div class="progress-step" data-step="eligibility" id="step-eligibility">
+                    <div class="step-dot">2</div>
+                    <span class="step-label">Eligibility</span>
+                </div>
+                <div class="progress-connector"></div>
+                <div class="progress-step" data-step="voter_id" id="step-voter-id">
+                    <div class="step-dot">3</div>
+                    <span class="step-label">Voter ID</span>
+                </div>
+                <div class="progress-connector"></div>
+                <div class="progress-step" data-step="voting" id="step-voting">
+                    <div class="step-dot">4</div>
+                    <span class="step-label">Vote</span>
+                </div>
+                <div class="progress-connector"></div>
+                <div class="progress-step" data-step="complete" id="step-complete">
+                    <div class="step-dot">✓</div>
+                    <span class="step-label">Done</span>
+                </div>
+            </div>
+
+            <div class="chat-history" id="chat-history" role="log" aria-live="polite" aria-label="Chat conversation">
                 <!-- Welcome block -->
                 <div class="chat-message assistant">
                     Welcome to the Interactive Election Assistant. Click "Start Guide" to begin verifying your eligibility, or ask me a generic question about the election process.
                 </div>
             </div>
 
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typing-indicator" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <!-- Dynamic Decision Buttons container -->
-            <div class="chat-options-container" id="chat-options-container">
-                <button class="chat-option-btn primary-pulse" onclick="sendOption('start')">Start Guide</button>
+            <div class="chat-options-container" id="chat-options-container" role="group" aria-label="Response options">
+                <button class="chat-option-btn primary-pulse" onclick="sendOption('start')" aria-label="Start the election guide">Start Guide</button>
             </div>
 
             <!-- FAQ Input Area -->
             <div class="chat-input-area">
-                <input type="text" id="faq-input" placeholder="Ask a question (e.g. What is an EVM?)" autocomplete="off">
-                <button id="send-btn" onclick="sendText()">Send</button>
+                <input type="text" id="faq-input" placeholder="Ask a question (e.g. What is an EVM?)" autocomplete="off" aria-label="Type your question here">
+                <button id="send-btn" onclick="sendText()" aria-label="Send message">Send</button>
             </div>
         </main>
 
         <!-- Right Panel: Visual Timeline / Progress -->
-        <aside class="timeline-panel">
+        <aside class="timeline-panel" aria-label="Election timeline and progress">
             <h2>Current Election Phase</h2>
-            <div class="timeline" id="timeline-container">
+            <div class="timeline" id="timeline-container" role="list" aria-label="Election phases">
                 <!-- Phases injected by JS here -->
             </div>
 
             <div class="progress-section">
                 <h2>Your Progress Status</h2>
                 <div class="status-indicator">
-                    <span class="status-dot"></span>
+                    <span class="status-dot" aria-hidden="true"></span>
                     <span id="current-state-text" class="status-text">Not Started</span>
                 </div>
             </div>
