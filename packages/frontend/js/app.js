@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/chat";
+const API_URL = "http://localhost:3000/chat";
 let currentSessionId = null;
 
 const chatHistory = document.getElementById('chat-history');
