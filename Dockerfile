@@ -10,11 +10,13 @@ COPY packages/backend/package*.json ./packages/backend/
 WORKDIR /app/packages/backend
 RUN npm install --production
 
-# Copy the rest of the backend source code
-COPY packages/backend/ ./
+# Go back to /app and copy all of packages (backend AND frontend)
+WORKDIR /app
+COPY packages/ ./packages/
 
 # Expose port 8080 (Cloud Run default)
 EXPOSE 8080
 
-# Run the app
+# Start the app from the backend directory
+WORKDIR /app/packages/backend
 CMD ["npm", "start"]
