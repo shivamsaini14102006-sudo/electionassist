@@ -1,0 +1,29 @@
+{
+    "meta": {
+        "version": "1.0.0",
+        "name": "Static Knowledge Base MVP"
+    },
+    "content": {
+        "eligibility_intro": {
+            "text": "Before you can vote, we need to check your eligibility. Are you at least 18 years old and a citizen of your current residing country?"
+        },
+        "ineligible": {
+            "text": "Unfortunately, it looks like you are not eligible to vote right now. Either due to your age or citizenship status."
+        },
+        "voter_id_check": {
+            "text": "Great! You are eligible. To vote, you need a Registered Voter ID or equivalent documentation. Do you currently have a Voter ID card?"
+        },
+        "registration": {
+            "text": "No problem! You can register online through your local election portal. Generally you'll need proof of address and ID. The deadline is usually 30 days before election day."
+        },
+        "voting_process": {
+            "text": "Voting Day: When you arrive at the polling booth, present your Voter ID. An official will verify it, mark your finger with ink, and direct you to the Electronic Voting Machine (EVM) where you press the button next to your candidate of choice."
+        }
+    },
+    "timeline": [
+        { "phase": "Registration", "active": true, "note": "Register before the cutoff date." },
+        { "phase": "Campaigning", "active": false, "note": "Parties publish manifestos." },
+        { "phase": "Voting Day", "active": false, "note": "Cast your ballot." },
+        { "phase": "Results", "active": false, "note": "Votes are counted." }
+    ]
+}

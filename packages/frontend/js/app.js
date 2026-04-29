@@ -196,6 +196,15 @@ async function sendRequestToServer(message) {
         // Always update timeline and state
         updateTimelineAndState(data.timeline, data.state);
 
+        // Analytics Tracking: Flow Completion and Steps
+        if (window.firebaseAnalytics && data.state) {
+            window.firebaseAnalytics.logEvent(window.firebaseAnalytics.analytics, 'step_reached', { step: data.state });
+            
+            if (data.state === 'complete') {
+                window.firebaseAnalytics.logEvent(window.firebaseAnalytics.analytics, 'flow_completion');
+            }
+        }
+
         // Journey summary on completion
         if (data.journeySummary) {
             appendJourneySummary(data.journeySummary);
@@ -211,6 +220,12 @@ async function sendRequestToServer(message) {
 
 function sendOption(optionText) {
     if (isRequestPending) return;
+    
+    // Analytics Tracking: Session Start
+    if (optionText === 'start' && window.firebaseAnalytics) {
+        window.firebaseAnalytics.logEvent(window.firebaseAnalytics.analytics, 'session_start', { method: 'button' });
+    }
+    
     appendMessage(optionText, 'user');
     sendRequestToServer(optionText);
 }

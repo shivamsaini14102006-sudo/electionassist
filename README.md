@@ -114,7 +114,16 @@ We use Jest and Supertest for comprehensive test coverage.
 cd packages/backend
 npm test
 ```
-*Runs the test suite with coverage report (tests validate decision engine paths, state manager, validation, and API routes).*
+*Runs the backend unit test suite with coverage report (tests validate decision engine paths, state manager, validation, and API routes).*
+
+### End-to-End Playwright Tests
+From the root directory:
+```bash
+npm install -D @playwright/test
+npx playwright install
+npx playwright test
+```
+*Runs E2E interaction tests simulating user flow through the frontend.*
 
 ---
 
@@ -145,9 +154,17 @@ This app is optimized for Google Cloud Run deployment via the included `cloudbui
 
 ## 🚀 Future Improvements
 
-* **Persistent Session Store**: Migrate from in-memory `Map` to Firebase/Firestore to allow for multi-container state sharing and scaling.
 * Real-time election data integration.
 * Multi-language support.
+
+---
+
+## ☁️ Backend Integrations Added
+
+* **Firebase Firestore**: We use Firebase Admin to store session details and state in Firestore, enabling multi-container state sharing and horizontal scaling.
+* **Gemini Caching**: Requests to Gemini are cached with a TTL to prevent redundant requests.
+* **Rate Limiting**: Protects against abuse via Express rate limits.
+* **CI/CD Pipeline**: Automated tests and deployment via GitHub Actions (`ci.yml`).
 
 ---
 
